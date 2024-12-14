@@ -12,13 +12,16 @@ class SplashViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupGesture()
         
+        // ciclo de decisão se vai para login ou para o menu
         setup()
     }
     
     private func setup() {
         self.view.addSubview(contentView)
         self.navigationController?.navigationBar.isHidden = true
+        self.view.backgroundColor = Colors.primaryRedBase
         
         setupConstraints()
     }
@@ -37,5 +40,20 @@ class SplashViewController: UIViewController {
         // contentView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         // contentView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         // contentView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+    }
+    
+    private func setupGesture() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(showLoginBottomSheet))
+        self.view.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc // para usar coisas do objective-c que não foram migradas
+    private func showLoginBottomSheet() {
+        let loginBottomSheet = LoginBottomSheetViewController()
+        loginBottomSheet.modalPresentationStyle = .overCurrentContext // apresenta a nova view em cima da view atual
+        loginBottomSheet.modalTransitionStyle = .crossDissolve
+        self.present(loginBottomSheet, animated: false) {
+            loginBottomSheet.animateShow()
+        }
     }
 }
