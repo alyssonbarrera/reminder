@@ -17,4 +17,5 @@ public struct Metrics {
     public static let primaryButton: CGFloat = 56
     public static let secondaryButton: CGFloat = 56
     public static let iconButton: CGFloat = 56
+    public static let inputSize: CGFloat = 56
 }
