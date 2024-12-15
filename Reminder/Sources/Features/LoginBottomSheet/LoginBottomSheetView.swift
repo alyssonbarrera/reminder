@@ -11,6 +11,7 @@ class LoginBottomSheetView: UIView {
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.text = "login.label.title".localized
+        label.isUserInteractionEnabled = true
         label.font = Typography.subHeading
         label.textColor = Colors.gray800
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -58,10 +59,18 @@ class LoginBottomSheetView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
+        
+        let exampleGest = UITapGestureRecognizer(target: self, action: #selector(exampleTaped))
+        titleLabel.addGestureRecognizer(exampleGest)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    @objc
+    private func exampleTaped() {
+        print("clicou na label")
     }
     
     private func setupUI() {
