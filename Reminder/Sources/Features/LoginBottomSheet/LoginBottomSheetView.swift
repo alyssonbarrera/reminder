@@ -8,6 +8,8 @@
 import UIKit
 
 class LoginBottomSheetView: UIView {
+    public weak var delegate: LoginBottomSheetViewDelegate?
+    
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.text = "login.label.title".localized
@@ -76,6 +78,7 @@ class LoginBottomSheetView: UIView {
         button.setTitle("login.button.title".localized, for: .normal)
         button.backgroundColor = Colors.primaryRedBase
         button.layer.cornerRadius = Metrics.medium
+        button.addTarget(self, action: #selector(loginButtonDidTapeed), for: .touchUpInside)
         button.tintColor = Colors.gray100
         button.titleLabel?.font = Typography.subHeading
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -139,5 +142,12 @@ class LoginBottomSheetView: UIView {
             loginButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -Metrics.huge),
             loginButton.heightAnchor.constraint(equalToConstant: Metrics.primaryButton)
         ])
+    }
+    
+    @objc
+    private func loginButtonDidTapeed() {
+        let user = emailTextField.text ?? ""
+        let password  = passwordTextField.text ?? ""
+        delegate?.sendLoginData(user: user, password: password)
     }
 }
