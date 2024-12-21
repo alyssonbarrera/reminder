@@ -50,6 +50,7 @@ class SplashViewController: UIViewController {
     @objc // para usar coisas do objective-c que não foram migradas
     private func showLoginBottomSheet() {
         let loginBottomSheet = LoginBottomSheetViewController()
+        loginBottomSheet.mainNavigation = self.navigationController
         loginBottomSheet.modalPresentationStyle = .overCurrentContext // apresenta a nova view em cima da view atual
         loginBottomSheet.modalTransitionStyle = .crossDissolve
         self.present(loginBottomSheet, animated: false) {
