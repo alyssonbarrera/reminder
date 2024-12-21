@@ -13,3 +13,5 @@ build/
 # CocoaPods keys
 .DS_Store
 
+# Firebase
+GoogleService-Info.plist
