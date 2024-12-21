@@ -5,6 +5,8 @@
 //  Created by Alysson Barrera on 21/12/24.
 //
 
+import Firebase
+
 class LoginBottomSheetViewModel {
     func doAuth(usernameLogin: String, password: String) {
         print(usernameLogin, password)

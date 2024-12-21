@@ -1,0 +1,15 @@
+# Pods directory
+Pods/
+
+# Build artifacts
+*.xcworkspace
+*.xcuserdata
+*.xcodeproj/project.xcworkspace/
+
+# Derived data
+DerivedData/
+build/
+
+# CocoaPods keys
+.DS_Store
+
