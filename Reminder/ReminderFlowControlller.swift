@@ -10,13 +10,16 @@ import UIKit
 class ReminderFlowControlller {
     //MARK: - Properties
     private var navigationController: UINavigationController?
+    private let viewControllersFactory: ViewControllersFactoryProtocol
 
     //MARK: - init
-    public init() {}
+    public init() {
+        self.viewControllersFactory = ViewControllersFactory()
+    }
     
     //MARK: - startFlow
     func start() -> UINavigationController? {
-        let startViewController = SplashViewController(flowDelegate: self)
+        let startViewController = viewControllersFactory.makeSplashViewController(flowDelegate: self)
         self.navigationController = UINavigationController(rootViewController: startViewController)
         return self.navigationController
     }
@@ -25,7 +28,7 @@ class ReminderFlowControlller {
 //MARK: - Login
 extension ReminderFlowControlller: LoginBottomSheeFlowDelegate {
     func navigateToHome() {
-        self.navigationController?.dismiss(animated: true)
+        self.navigationController?.dismiss(animated: false)
         let viewController = UIViewController()
         viewController.view.backgroundColor = .red
         self.navigationController?.pushViewController(viewController, animated: true)
@@ -35,7 +38,7 @@ extension ReminderFlowControlller: LoginBottomSheeFlowDelegate {
 //MARK: - Splash
 extension ReminderFlowControlller: SplashFlowDelegate {
     func openLoginBottomSheet() {
-        let loginBottomSheet = LoginBottomSheetViewController(flowDelegate: self)
+        let loginBottomSheet = viewControllersFactory.makeLoginBottomSheetViewController(flowDelegate: self)
         loginBottomSheet.modalPresentationStyle = .overCurrentContext // apresenta a nova view em cima da view atual
         loginBottomSheet.modalTransitionStyle = .crossDissolve
         navigationController?.present(loginBottomSheet, animated: false) {

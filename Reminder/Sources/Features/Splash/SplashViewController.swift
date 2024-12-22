@@ -8,10 +8,11 @@
 import UIKit
 
 class SplashViewController: UIViewController {
-    let contentView = SplashView()
+    let contentView: SplashView
     public weak var flowDelegate: SplashFlowDelegate?
     
-    init(flowDelegate: SplashFlowDelegate) {
+    init(contentView: SplashView, flowDelegate: SplashFlowDelegate) {
+        self.contentView = contentView
         self.flowDelegate = flowDelegate
         super.init(nibName: nil, bundle: nil)
     }
@@ -29,7 +30,7 @@ class SplashViewController: UIViewController {
     }
     
     private func setup() {
-        self.view.addSubview(contentView)
+        self.view.addSubview(self.contentView)
         self.navigationController?.navigationBar.isHidden = true
         self.view.backgroundColor = Colors.primaryRedBase
         
@@ -38,13 +39,13 @@ class SplashViewController: UIViewController {
     
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            contentView.topAnchor.constraint(equalTo: view.topAnchor),
-            contentView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            contentView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            contentView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            self.contentView.topAnchor.constraint(equalTo: view.topAnchor),
+            self.contentView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            self.contentView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            self.contentView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
         
-        contentView.translatesAutoresizingMaskIntoConstraints = false
+        self.contentView.translatesAutoresizingMaskIntoConstraints = false
         
         // contentView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         // contentView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
