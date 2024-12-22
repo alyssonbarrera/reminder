@@ -53,6 +53,10 @@ class LoginBottomSheetViewController: UIViewController {
         viewModel.successResult = { [weak self] usernameLogin in
             self?.presentSaveLoginAlert(email: usernameLogin)
         }
+        
+        viewModel.errorResult = { [weak self] errorMessage in
+            self?.presentErrorAlert(message: errorMessage)
+        }
     }
     
     private func presentSaveLoginAlert(email: String) {
@@ -69,6 +73,14 @@ class LoginBottomSheetViewController: UIViewController {
         
         alertController.addAction(saveAction)
         alertController.addAction(cancelAction)
+        self.present(alertController, animated: true)
+    }
+    
+    private func presentErrorAlert(message: String) {
+        let alertController = UIAlertController(title: "Erro ao logar", message: message, preferredStyle: .alert)
+        let retryAction = UIAlertAction(title: "Tentar Novamente", style: .cancel)
+        
+        alertController.addAction(retryAction)
         self.present(alertController, animated: true)
     }
     
