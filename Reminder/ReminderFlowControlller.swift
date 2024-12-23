@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ReminderFlowControlller {
+class ReminderFlowController {
     //MARK: - Properties
     private var navigationController: UINavigationController?
     private let viewControllersFactory: ViewControllersFactoryProtocol
@@ -26,17 +26,16 @@ class ReminderFlowControlller {
 }
 
 //MARK: - Login
-extension ReminderFlowControlller: LoginBottomSheeFlowDelegate {
+extension ReminderFlowController: LoginBottomSheeFlowDelegate {
     func navigateToHome() {
         self.navigationController?.dismiss(animated: false)
-        let viewController = UIViewController()
-        viewController.view.backgroundColor = .red
+        let viewController = viewControllersFactory.makeHomeViewController(flowDelegate: self)
         self.navigationController?.pushViewController(viewController, animated: true)
     }
 }
 
 //MARK: - Splash
-extension ReminderFlowControlller: SplashFlowDelegate {
+extension ReminderFlowController: SplashFlowDelegate {
     func openLoginBottomSheet() {
         let loginBottomSheet = viewControllersFactory.makeLoginBottomSheetViewController(flowDelegate: self)
         loginBottomSheet.modalPresentationStyle = .overCurrentContext // apresenta a nova view em cima da view atual
@@ -52,4 +51,9 @@ extension ReminderFlowControlller: SplashFlowDelegate {
             self.navigationController?.pushViewController(viewController, animated: true)
         }
     }
+}
+
+//MARK: - Home
+extension ReminderFlowController: HomeFlowDelegate {
+
 }

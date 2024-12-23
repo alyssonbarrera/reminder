@@ -15,7 +15,7 @@ class LoginBottomSheetView: UIView {
         label.text = "login.label.title".localized
         label.isUserInteractionEnabled = true
         label.font = Typography.subHeading
-        label.textColor = Colors.gray800
+        label.textColor = Colors.gray100
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -25,7 +25,7 @@ class LoginBottomSheetView: UIView {
         label.text = "login.loginText.label.title".localized
         label.isUserInteractionEnabled = true
         label.font = Typography.label
-        label.textColor = Colors.gray800
+        label.textColor = Colors.gray100
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -35,7 +35,7 @@ class LoginBottomSheetView: UIView {
         label.text = "login.passwordText.label.title".localized
         label.isUserInteractionEnabled = true
         label.font = Typography.label
-        label.textColor = Colors.gray800
+        label.textColor = Colors.gray100
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -79,7 +79,7 @@ class LoginBottomSheetView: UIView {
         button.backgroundColor = Colors.primaryRedBase
         button.layer.cornerRadius = Metrics.medium
         button.addTarget(self, action: #selector(loginButtonDidTapeed), for: .touchUpInside)
-        button.tintColor = Colors.gray100
+        button.setTitleColor(Colors.gray800, for: .normal)
         button.titleLabel?.font = Typography.subHeading
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
