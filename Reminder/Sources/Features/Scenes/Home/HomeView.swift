@@ -87,9 +87,9 @@ class HomeView: UIView {
     private func setupConstraints() {
         NSLayoutConstraint.activate([
             profileBackground.topAnchor.constraint(equalTo: topAnchor),
+            profileBackground.heightAnchor.constraint(equalToConstant: Metrics.backgroundProfileSize),
             profileBackground.leadingAnchor.constraint(equalTo: leadingAnchor),
             profileBackground.trailingAnchor.constraint(equalTo: trailingAnchor),
-            profileBackground.heightAnchor.constraint(equalToConstant: Metrics.backgroundProfileSize),
             
             profileImage.topAnchor.constraint(equalTo: profileBackground.topAnchor, constant: Metrics.huge),
             profileImage.leadingAnchor.constraint(equalTo: profileBackground.leadingAnchor, constant: Metrics.medium),
@@ -99,18 +99,18 @@ class HomeView: UIView {
             welcomeLabel.topAnchor.constraint(equalTo: profileImage.bottomAnchor, constant: Metrics.small),
             welcomeLabel.leadingAnchor.constraint(equalTo: profileImage.leadingAnchor),
             
-            nameLabel.topAnchor.constraint(equalTo: welcomeLabel.bottomAnchor, constant: Metrics.little),
+            nameLabel.topAnchor.constraint(equalTo: welcomeLabel.bottomAnchor, constant: Metrics.tiny),
             nameLabel.leadingAnchor.constraint(equalTo: welcomeLabel.leadingAnchor),
+            
+            feedbackButton.heightAnchor.constraint(equalToConstant: Metrics.primaryButton),
+            feedbackButton.bottomAnchor.constraint(equalTo: contentBackground.bottomAnchor, constant: -Metrics.medium),
+            feedbackButton.leadingAnchor.constraint(equalTo: contentBackground.leadingAnchor, constant: Metrics.medium),
+            feedbackButton.trailingAnchor.constraint(equalTo: contentBackground.trailingAnchor, constant: -Metrics.medium),
             
             contentBackground.topAnchor.constraint(equalTo: profileBackground.bottomAnchor),
             contentBackground.leadingAnchor.constraint(equalTo: leadingAnchor),
             contentBackground.trailingAnchor.constraint(equalTo: trailingAnchor),
             contentBackground.bottomAnchor.constraint(equalTo: bottomAnchor),
-            
-            feedbackButton.bottomAnchor.constraint(equalTo: contentBackground.bottomAnchor, constant: -Metrics.medium),
-            feedbackButton.leadingAnchor.constraint(equalTo: contentBackground.leadingAnchor, constant: Metrics.medium),
-            feedbackButton.trailingAnchor.constraint(equalTo: contentBackground.trailingAnchor, constant: -Metrics.medium),
-            feedbackButton.heightAnchor.constraint(equalToConstant: Metrics.secondaryButton)
         ])
     }
 }
