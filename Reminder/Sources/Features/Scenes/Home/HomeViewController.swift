@@ -49,7 +49,8 @@ class HomeViewController: UIViewController {
     
     @objc
     private func logoutAction() {
-        // clicou no logout
+        UserDefaultsManager.removeUser()
+        self.flowDelegate.logout()
     }
     
     private func buildHierarchy() {
