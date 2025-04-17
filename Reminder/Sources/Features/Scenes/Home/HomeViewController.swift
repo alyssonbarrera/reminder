@@ -10,10 +10,12 @@ import UIKit
 class HomeViewController: UIViewController {
     let contentView: HomeView
     let flowDelegate: HomeFlowDelegate
+    let viewModel: HomeViewModel
     
     init(contentView: HomeView, flowDelegate: HomeFlowDelegate) {
         self.contentView = contentView
         self.flowDelegate = flowDelegate
+        self.viewModel = HomeViewModel()
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -26,6 +28,7 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         setup()
         setupNavigationBar()
+        checkForExistingData()
     }
     
     private func setupNavigationBar() {
@@ -44,6 +47,7 @@ class HomeViewController: UIViewController {
     
     private func setup() {
         view.addSubview(contentView)
+        self.view.backgroundColor = Colors.gray600
         contentView.delegate = self
         buildHierarchy()
     }
@@ -52,6 +56,16 @@ class HomeViewController: UIViewController {
     private func logoutAction() {
         UserDefaultsManager.removeUser()
         self.flowDelegate.logout()
+    }
+    
+    private func checkForExistingData() {
+        if UserDefaultsManager.loadUser() != nil {
+            contentView.nameTextField.text = UserDefaultsManager.loadUserName()
+        }
+        
+        if let savedImage = UserDefaultsManager.loadUserProfileImage() {
+            contentView.profileImage.image = savedImage
+        }
     }
     
     private func buildHierarchy() {
@@ -77,8 +91,10 @@ extension HomeViewController: UIImagePickerControllerDelegate, UINavigationContr
     internal func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let editedImage = info[.editedImage] as? UIImage {
             contentView.profileImage.image = editedImage
+            UserDefaultsManager.saveUserProfileImage(image: editedImage)
         } else if let originalImage = info[.originalImage] as? UIImage {
             contentView.profileImage.image = originalImage
+            UserDefaultsManager.saveUserProfileImage(image: originalImage)
         }
         
         dismiss(animated: true)

@@ -33,7 +33,7 @@ class LoginBottomSheetViewController: UIViewController {
 
     private func setupUI() {
         self.view.addSubview(self.contentView)
-        self.contentView.backgroundColor = Colors.gray800
+        self.contentView.backgroundColor = Colors.gray600
         self.contentView.translatesAutoresizingMaskIntoConstraints = false
         
         setupConstraints()
