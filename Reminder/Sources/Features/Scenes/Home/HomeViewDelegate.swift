@@ -9,4 +9,5 @@ import UIKit
 
 protocol HomeViewDelegate: AnyObject {
     func didTapProfileImage()
+    func didTapNewPrescriptionButton()
 }

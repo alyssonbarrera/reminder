@@ -61,6 +61,8 @@ extension ReminderFlowController: HomeFlowDelegate {
     }
     
     func navigateToRecipes() {
-        
+        let newReceiptViewController = viewControllersFactory.makeNewReceiptViewController()
+        self.navigationController?.pushViewController(newReceiptViewController, animated: true)
+        self.navigationController?.navigationBar.isHidden = true
     }
 }

@@ -9,6 +9,7 @@ import UIKit
 
 public struct Metrics {
     public static let huge: CGFloat = 48
+    public static let high: CGFloat = 32
     public static let medium: CGFloat = 24
     public static let medier: CGFloat = 16
     public static let small: CGFloat = 12
