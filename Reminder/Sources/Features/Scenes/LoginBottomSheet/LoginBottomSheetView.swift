@@ -56,6 +56,7 @@ class LoginBottomSheetView: UIView {
         text.layer.borderWidth = 1
         text.layer.borderColor = Colors.gray400.cgColor
         text.backgroundColor = .clear
+        text.textColor = Colors.gray200
         text.translatesAutoresizingMaskIntoConstraints = false
         return text
     }()
@@ -68,6 +69,7 @@ class LoginBottomSheetView: UIView {
         text.layer.borderWidth = 1
         text.layer.borderColor = Colors.gray400.cgColor
         text.backgroundColor = .clear
+        text.textColor = Colors.gray200
         text.isSecureTextEntry = true
         text.translatesAutoresizingMaskIntoConstraints = false
         return text

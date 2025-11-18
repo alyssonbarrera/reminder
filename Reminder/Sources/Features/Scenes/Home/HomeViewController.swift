@@ -28,6 +28,7 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         setup()
         setupActionForNewReceipt()
+        setupActionForMyReceipts()
         setupNavigationBar()
         checkForExistingData()
     }
@@ -37,7 +38,7 @@ class HomeViewController: UIViewController {
         self.navigationItem.hidesBackButton = true
         
         let logoutButton = UIBarButtonItem(
-            image: UIImage(named: "log-out-icon"),
+            image: UIImage(named: "log-out"),
             style: .plain,
             target: self,
             action: #selector(logoutAction))
@@ -56,6 +57,12 @@ class HomeViewController: UIViewController {
     private func setupActionForNewReceipt() {
         contentView.newPrescriptionButton.tapAction = { [weak self] in
             self?.didTapNewPrescriptionButton()
+        }
+    }
+    
+    private func setupActionForMyReceipts() {
+        contentView.myPrescriptionButton.tapAction = { [weak self] in
+            self?.didTapMyReceiptsButton()
         }
     }
     
@@ -87,6 +94,10 @@ extension HomeViewController: HomeViewDelegate {
     
     func didTapNewPrescriptionButton() {
         flowDelegate.navigateToRecipes()
+    }
+    
+    func didTapMyReceiptsButton() {
+        flowDelegate.navigateToMyReceipts()
     }
 }
 

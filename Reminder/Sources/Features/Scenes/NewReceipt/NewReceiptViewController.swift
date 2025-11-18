@@ -53,6 +53,7 @@ class NewReceiptViewController: UIViewController {
                              takeNow: takeNow)
         
         print("Receita \(remedy) adicionada!")
+        self.navigationController?.popViewController(animated: true)
     }
     
     @objc

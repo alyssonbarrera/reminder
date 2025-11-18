@@ -69,7 +69,7 @@ class HomeView: UIView {
         stackView.spacing = Metrics.small
         stackView.translatesAutoresizingMaskIntoConstraints = false
 
-        let iconImageView = UIImageView(image: UIImage(named: "Star"))
+        let iconImageView = UIImageView(image: UIImage(named: "star"))
         iconImageView.contentMode = .scaleAspectFit
         iconImageView.translatesAutoresizingMaskIntoConstraints = false
         stackView.addArrangedSubview(iconImageView)

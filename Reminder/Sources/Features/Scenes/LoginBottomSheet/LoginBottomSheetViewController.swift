@@ -11,9 +11,9 @@ class LoginBottomSheetViewController: UIViewController {
     let viewModel = LoginBottomSheetViewModel()
     let contentView: LoginBottomSheetView
     var handleAreaHeight: CGFloat = 50.0
-    public weak var flowDelegate: LoginBottomSheeFlowDelegate?
+    public weak var flowDelegate: LoginBottomSheetFlowDelegate?
     
-    init(contentView: LoginBottomSheetView, flowDelegate: LoginBottomSheeFlowDelegate) {
+    init(contentView: LoginBottomSheetView, flowDelegate: LoginBottomSheetFlowDelegate) {
         self.contentView = contentView
         self.flowDelegate = flowDelegate
         super.init(nibName: nil, bundle: nil)
