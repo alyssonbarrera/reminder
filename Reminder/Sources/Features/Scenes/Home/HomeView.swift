@@ -52,7 +52,13 @@ class HomeView: UIView {
         textField.textColor = Colors.gray100
         textField.font = Typography.heading
         textField.returnKeyType = .done
-        textField.placeholder = "Insira seu nome"
+        textField.attributedPlaceholder = NSAttributedString(
+                string: "Insira seu nome",
+                attributes: [
+                    .foregroundColor: Colors.gray300,
+                    .font: Typography.heading
+                ]
+            )
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
@@ -71,6 +77,7 @@ class HomeView: UIView {
 
         let iconImageView = UIImageView(image: UIImage(named: "star"))
         iconImageView.contentMode = .scaleAspectFit
+        iconImageView.tintColor = Colors.gray800
         iconImageView.translatesAutoresizingMaskIntoConstraints = false
         stackView.addArrangedSubview(iconImageView)
 
@@ -85,7 +92,9 @@ class HomeView: UIView {
 
         NSLayoutConstraint.activate([
             stackView.centerXAnchor.constraint(equalTo: button.centerXAnchor),
-            stackView.centerYAnchor.constraint(equalTo: button.centerYAnchor)
+            stackView.centerYAnchor.constraint(equalTo: button.centerYAnchor),
+            iconImageView.heightAnchor.constraint(equalToConstant: 24),
+            iconImageView.widthAnchor.constraint(equalToConstant: 24)
         ])
 
         return button

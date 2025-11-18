@@ -11,6 +11,20 @@ class MyReceiptsViewController: UIViewController {
     let contentView: MyReceiptsView
     weak var flowDelegate: MyReceiptsFlowDelegate?
     
+    private let mockMedicamentos = [
+        ("Buscopam", "13:00", "2 em 2 horas"),
+        ("Predinisona", "14:00", "4 em 4 horas"),
+        ("Vicodim", "15:00", "6 em 6 horas"),
+        ("Oxicodona", "16:00", "8 em 8 horas"),
+        ("Loratadina", "17:00", "12 em 12 horas"),
+        ("Diazepam", "18:00", "1 vez ao dia"),
+        ("Magnopirol", "19:00", "2 em 2 horas"),
+        ("Timoxiline barbebutenol", "20:00", "2 em 2 horas"),
+        ("Buscopam", "21:00", "2 em 2 horas"),
+        ("Buscopam", "22:00", "2 em 2 horas"),
+        ("Buscopam", "23:00", "2 em 2 horas"),
+    ]
+    
     init(contentView: MyReceiptsView, flowDelegate: MyReceiptsFlowDelegate) {
         self.contentView = contentView
         self.flowDelegate = flowDelegate
@@ -23,6 +37,7 @@ class MyReceiptsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupTableView()
         setup()
     }
     
@@ -49,8 +64,48 @@ class MyReceiptsViewController: UIViewController {
         ])
     }
     
+    private func setupTableView() {
+        contentView.tableView.dataSource = self
+        contentView.tableView.delegate = self
+        contentView.tableView.register(RemedyCell.self, forCellReuseIdentifier: RemedyCell.identifier)
+        contentView.tableView.contentInset = UIEdgeInsets(top: 16, left: 0, bottom: 16, right: 0)
+    }
+    
     @objc
     private func backButtonTapped() {
         self.navigationController?.popViewController(animated: true)
+    }
+}
+
+extension MyReceiptsViewController: UITableViewDelegate {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return mockMedicamentos.count
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 90
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView()
+        headerView.backgroundColor = .clear
+        return headerView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 4
+    }
+}
+
+extension MyReceiptsViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: RemedyCell.identifier, for: indexPath) as! RemedyCell
+        let medicamento = mockMedicamentos[indexPath.section]
+        cell.configure(title: medicamento.0, time: medicamento.1, recurrence: medicamento.2)
+        return cell
     }
 }

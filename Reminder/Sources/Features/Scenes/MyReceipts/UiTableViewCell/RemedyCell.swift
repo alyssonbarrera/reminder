@@ -76,6 +76,21 @@ class RemedyCell: UITableViewCell {
         setupView()
     }
     
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+    }
+    
+    // Para remover o fundo preto da célula
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        backgroundColor = .clear
+        contentView.backgroundColor = Colors.gray700
+        
+        selectedBackgroundView = UIView()
+        selectedBackgroundView?.backgroundColor = Colors.gray600.withAlphaComponent(0.3)
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -104,7 +119,7 @@ class RemedyCell: UITableViewCell {
             titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Metrics.medier),
             titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Metrics.medium),
             
-            timeBackgroundView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -Metrics.small),
+            timeBackgroundView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Metrics.small),
             timeBackgroundView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Metrics.medium),
             timeBackgroundView.heightAnchor.constraint(equalToConstant: 28),
             
